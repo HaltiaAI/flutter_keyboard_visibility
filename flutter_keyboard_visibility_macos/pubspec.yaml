@@ -4,6 +4,8 @@ version: 1.0.0
 homepage: https://github.com/MisterJimson/flutter_keyboard_visibility
 repository: https://github.com/MisterJimson/flutter_keyboard_visibility
 
+publish_to: 'none' # TODO: remove on fork merge
+
 environment:
   sdk: '>=2.12.0 <4.0.0'
   flutter: ">=1.20.0"
@@ -16,7 +18,8 @@ flutter:
         dartPluginClass: FlutterKeyboardVisibilityPluginMacos
 
 dependencies:
-  flutter_keyboard_visibility_platform_interface: ^2.0.0
+  flutter_keyboard_visibility_platform_interface:
+    path: ../flutter_keyboard_visibility_platform_interface
   flutter:
     sdk: flutter
 

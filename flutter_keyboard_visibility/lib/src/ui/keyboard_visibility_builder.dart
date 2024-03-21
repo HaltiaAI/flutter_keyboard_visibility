@@ -1,5 +1,6 @@
 import 'package:flutter/widgets.dart';
 import 'package:flutter_keyboard_visibility/src/keyboard_visibility_controller.dart';
+import 'package:flutter_keyboard_visibility_platform_interface/flutter_keyboard_visibility_platform_interface.dart';
 
 /// A convenience builder that exposes if the native keyboard is visible.
 class KeyboardVisibilityBuilder extends StatelessWidget {
@@ -18,18 +19,18 @@ class KeyboardVisibilityBuilder extends StatelessWidget {
   }) : super(key: key);
 
   /// A builder method that exposes if the native keyboard is visible.
-  final Widget Function(BuildContext, bool isKeyboardVisible) builder;
+  final Widget Function(BuildContext, KeyboardVisibilityStatus isKeyboardVisible) builder;
 
   @override
   Widget build(BuildContext context) {
-    return StreamBuilder<bool>(
+    return StreamBuilder<KeyboardVisibilityStatus>(
       stream: _controller.onChange,
       initialData: _controller.isVisible,
       builder: (context, snapshot) {
         if (snapshot.data != null) {
           return builder(context, snapshot.data!);
         } else {
-          return builder(context, false);
+          return builder(context, KeyboardVisibilityStatus.notVisible);
         }
       },
     );

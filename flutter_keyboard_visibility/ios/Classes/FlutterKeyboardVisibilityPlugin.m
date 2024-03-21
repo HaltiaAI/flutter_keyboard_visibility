@@ -7,6 +7,7 @@
 //
 
 #import "FlutterKeyboardVisibilityPlugin.h"
+#import <GameController/GameController.h>
 
 @interface FlutterKeyboardVisibilityPlugin() <FlutterStreamHandler>
 
@@ -17,11 +18,33 @@
 @end
 
 
+@interface KeyboardDetector : NSObject
+
++ (BOOL)isExternalKeyboardConnected;
+
+@end
+
+@implementation KeyboardDetector
+
++ (BOOL)isExternalKeyboardConnected {
+    // Check if GameController framework is available
+    if (@available(iOS 14.0, *)) {
+        GCKeyboard *coalescedKeyboard = [GCKeyboard coalescedKeyboard];
+        return (coalescedKeyboard != nil);
+    } else {
+        return NO; // GameController framework is not available before iOS 14
+    }
+}
+
+@end
+
+
 @implementation FlutterKeyboardVisibilityPlugin
+
 
 +(void) registerWithRegistrar:(NSObject<FlutterPluginRegistrar> *)registrar {
     FlutterEventChannel *stream = [FlutterEventChannel eventChannelWithName:@"flutter_keyboard_visibility" binaryMessenger:[registrar messenger]];
-
+    
     FlutterKeyboardVisibilityPlugin *instance = [[FlutterKeyboardVisibilityPlugin alloc] init];
     [stream setStreamHandler:instance];
 }
@@ -46,7 +69,12 @@
     if (!self.isVisible) {
         self.isVisible = YES;
         if (self.flutterEventListening) {
-            self.flutterEventSink([NSNumber numberWithInt:1]);
+            BOOL isExternalKeyboardConnected = [KeyboardDetector isExternalKeyboardConnected];
+            if (isExternalKeyboardConnected) {
+                self.flutterEventSink([NSNumber numberWithInt:2]);
+            } else {
+                self.flutterEventSink([NSNumber numberWithInt:1]);
+            }
         }
     }
 }
@@ -57,7 +85,12 @@
     if (!self.isVisible) {
         self.isVisible = YES;
         if (self.flutterEventListening) {
-            self.flutterEventSink([NSNumber numberWithInt:1]);
+            BOOL isExternalKeyboardConnected = [KeyboardDetector isExternalKeyboardConnected];
+            if (isExternalKeyboardConnected) {
+                self.flutterEventSink([NSNumber numberWithInt:2]);
+            } else {
+                self.flutterEventSink([NSNumber numberWithInt:1]);
+            }
         }
     }
 }
@@ -79,7 +112,12 @@
 
     // if keyboard is visible at startup, let our subscriber know
     if (self.isVisible) {
-        self.flutterEventSink([NSNumber numberWithInt:1]);
+        BOOL isExternalKeyboardConnected = [KeyboardDetector isExternalKeyboardConnected];
+        if (isExternalKeyboardConnected) {
+            self.flutterEventSink([NSNumber numberWithInt:2]);
+        } else {
+            self.flutterEventSink([NSNumber numberWithInt:1]);
+        }
     }
 
     return nil;

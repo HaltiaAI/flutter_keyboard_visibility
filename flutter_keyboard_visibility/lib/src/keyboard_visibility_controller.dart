@@ -1,4 +1,5 @@
 import 'package:flutter_keyboard_visibility/src/keyboard_visibility_handler.dart';
+import 'package:flutter_keyboard_visibility_platform_interface/flutter_keyboard_visibility_platform_interface.dart';
 
 /// Provides direct information about keyboard visibility and allows you
 /// to subscribe to changes.
@@ -16,7 +17,7 @@ class KeyboardVisibilityController {
   static final KeyboardVisibilityController _instance =
       KeyboardVisibilityController._();
 
-  Stream<bool> get onChange => KeyboardVisibilityHandler.onChange;
+  Stream<KeyboardVisibilityStatus> get onChange => KeyboardVisibilityHandler.onChange;
 
-  bool get isVisible => KeyboardVisibilityHandler.isVisible;
+  KeyboardVisibilityStatus get isVisible => KeyboardVisibilityHandler.isVisible;
 }

@@ -17,9 +17,9 @@ class FlutterKeyboardVisibilityPluginWeb
   }
 
   /// Emits changes to keyboard visibility from the platform. Web is not
-  /// implemented yet so false is returned.
+  /// implemented yet so `notVisible` is returned.
   @override
-  Stream<bool> get onChange async* {
-    yield false;
+  Stream<KeyboardVisibilityStatus> get onChange async* {
+    yield KeyboardVisibilityStatus.notVisible;
   }
 }

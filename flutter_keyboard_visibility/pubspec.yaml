@@ -4,17 +4,24 @@ version: 6.0.0
 homepage: https://github.com/MisterJimson/flutter_keyboard_visibility
 repository: https://github.com/MisterJimson/flutter_keyboard_visibility
 
+publish_to: 'none' # TODO: remove on fork merge
+
 environment:
   sdk: '>=2.12.0 <4.0.0'
   flutter: ">=1.20.0"
 
 dependencies:
   meta: ">=1.0.0 <2.0.0"
-  flutter_keyboard_visibility_platform_interface: ^2.0.0
-  flutter_keyboard_visibility_linux: ^1.0.0
-  flutter_keyboard_visibility_macos: ^1.0.0
-  flutter_keyboard_visibility_web: ^2.0.0
-  flutter_keyboard_visibility_windows: ^1.0.0
+  flutter_keyboard_visibility_platform_interface:
+    path: ../flutter_keyboard_visibility_platform_interface
+  flutter_keyboard_visibility_linux:
+    path: ../flutter_keyboard_visibility_linux
+  flutter_keyboard_visibility_macos:
+    path: ../flutter_keyboard_visibility_macos
+  flutter_keyboard_visibility_web:
+    path: ../flutter_keyboard_visibility_web
+  flutter_keyboard_visibility_windows:
+    path: ../flutter_keyboard_visibility_windows
   flutter:
     sdk: flutter
 
