@@ -13,15 +13,30 @@ environment:
 dependencies:
   meta: ">=1.0.0 <2.0.0"
   flutter_keyboard_visibility_platform_interface:
-    path: ../flutter_keyboard_visibility_platform_interface
+    git:
+      url: https://github.com/HaltiaAI/flutter_keyboard_visibility.git
+      ref: feature/detect_ipad_external_keyboard
+      path: flutter_keyboard_visibility_platform_interface
   flutter_keyboard_visibility_linux:
-    path: ../flutter_keyboard_visibility_linux
+    git:
+      url: https://github.com/HaltiaAI/flutter_keyboard_visibility.git
+      ref: feature/detect_ipad_external_keyboard
+      path: flutter_keyboard_visibility_linux
   flutter_keyboard_visibility_macos:
-    path: ../flutter_keyboard_visibility_macos
+    git:
+      url: https://github.com/HaltiaAI/flutter_keyboard_visibility.git
+      ref: feature/detect_ipad_external_keyboard
+      path: flutter_keyboard_visibility_macos
   flutter_keyboard_visibility_web:
-    path: ../flutter_keyboard_visibility_web
+    git:
+      url: https://github.com/HaltiaAI/flutter_keyboard_visibility.git
+      ref: feature/detect_ipad_external_keyboard
+      path: flutter_keyboard_visibility_web
   flutter_keyboard_visibility_windows:
-    path: ../flutter_keyboard_visibility_windows
+    git:
+      url: https://github.com/HaltiaAI/flutter_keyboard_visibility.git
+      ref: feature/detect_ipad_external_keyboard
+      path: flutter_keyboard_visibility_windows
   flutter:
     sdk: flutter
 

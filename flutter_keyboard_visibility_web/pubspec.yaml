@@ -19,7 +19,10 @@ flutter:
 
 dependencies:
   flutter_keyboard_visibility_platform_interface:
-    path: ../flutter_keyboard_visibility_platform_interface
+    git:
+      url: https://github.com/HaltiaAI/flutter_keyboard_visibility.git
+      ref: feature/detect_ipad_external_keyboard
+      path: flutter_keyboard_visibility_platform_interface
   flutter_web_plugins:
     sdk: flutter
   flutter:
